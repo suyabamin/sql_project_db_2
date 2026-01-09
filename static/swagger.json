@@ -1,0 +1,72 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Hotel Booking Management System API",
+    "description": "CRUD APIs for DBMS project"
+  },
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "responses": {"200": {"description": "List of users"}}
+      },
+      "post": {
+        "summary": "Add a new user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string"},
+                "email": {"type": "string"},
+                "password": {"type": "string"},
+                "phone": {"type": "string"}
+              },
+              "required": ["name", "email", "password"]
+            }
+          }
+        ],
+        "responses": {"201": {"description": "User added"}}
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "summary": "Get single user",
+        "parameters": [{"name": "user_id", "in": "path", "required": true, "type": "integer"}],
+        "responses": {"200": {"description": "User details"}}
+      },
+      "put": {
+        "summary": "Update user",
+        "parameters": [
+          {"name": "user_id", "in": "path", "required": true, "type": "integer"},
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string"},
+                "email": {"type": "string"},
+                "password": {"type": "string"},
+                "phone": {"type": "string"}
+              }
+            }
+          }
+        ],
+        "responses": {"200": {"description": "User updated"}}
+      },
+      "delete": {
+        "summary": "Delete user",
+        "parameters": [{"name": "user_id", "in": "path", "required": true, "type": "integer"}],
+        "responses": {"200": {"description": "User deleted"}}
+      }
+    }
+  }
+}
